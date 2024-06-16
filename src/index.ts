@@ -1,9 +1,14 @@
 import express from 'express';
+import path from 'path';
+import serverRouter from './server';
+const cors = require('cors');
 
 const app = express();
-const port = 3000;
+const port = 3001;
 
-
+app.use(cors());
+app.use(express.static(path.join(__dirname, '../public')));
+app.use("/servers", serverRouter);
 app.get('/', (req, res) => {
     res.send('Hello World!');
 });
